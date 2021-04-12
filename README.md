@@ -1,101 +1,263 @@
-# Dungeon Crawl (sprint 2)
-
-## Story
-
-Last week you created a pretty good [Roguelike](https://en.wikipedia.org/wiki/Roguelike) game. It already has some features but the players have no opportunity to save their games. It can be annoying especially when you have to leave the game aside suddenly.
-
-The gamer community bragging for saving functionality and some other new interesting ideas like:
-
-- sharing game with each other
-- maps of different sizes
-- player tracking camera movement
-
-The management is handing out a **prioritized list** of new user stories that should be appended to the unfinished stories from last week in your product backlog. Try to estimate these new stories as well, and based on the estimations pick the stories your team can finish in this sprint.
-
-> Using database for saving game state feature is a business critical item which overrides every other priority now!
-
-Let's continue this entertaining project, and make our players happier!
-
-## What are you going to learn?
-
-- Serialization of objects
-- Communicating with database
-- Writing unit tests for your classes
-- Design pattern: **Data Access Object**
-
-## Tasks
-
-1. Create a new sprint from the existing backlog. Last week you had a long list of stories, a few new stories this week.
-    - The new items are added to the backlog
-    - The team has created a new sprint plan based upon the unified backlog
-    - The mandatory "Saving game" backlog item is in Sprint 2 and planned in detail
-
-2. As you will work in a new repository but you need the code from the previous sprint, add the `dungeon-crawl-2` repository as a new remote to the previous sprint's repository, then pull (merge) and push your changes into it.
-    - There is a merge commit in the project's repository that contains code from the previous sprint
-
-3. Allow the user to save the current state of the game in a database. Extend the given schema if needed.
-    - The application uses PostgreSQL database with the given schema: `schema_ddl.sql`
-    - The application respects the `PSQL_USER_NAME`, `PSQL_PASSWORD`, `PSQL_DB_NAME` environment variables
-    - Students has an Entity Relationship diagram (connections between classes, 1-1, 1-many...) in a digitalized format.
-    - When the user hits `Ctrl+s`, a modal window pops up with one text input field (labelled `Name`) and two buttons, `Save` and `Cancel`.
-- When the user clicks on `Save`, the game saves the current state (current map, player' position and content of inventory) in the database
-  - If the given name is new then it saves the state
-  - If the given username already exist in the db the system shows a dialogbox with a question: `Would you like to overwrite the already existing state?`
-    - Choosing `Yes`: the already existing state is updated and all modal window closes
-    - Choosing `No`: the dialog closes and the name input field content on the saving dialog is selected again
-  - In case of clicking on `Cancel` the saving process terminates without any further action
-- The modal window is automatically closed after the operation
-    - Already discovered maps are also saved in DB.
-    - There is a `Load` menu which brings up a modal window, showing the previously saved states with their names as a selectable list. Choosing an element loads the selected game state with the proper map, position and inventory.
-
-4. Allow the user to export (serialize) his game state into a text file, and load (deserialize) the game from the exported file.
-    - There is a menu item with a label `Export game` which triggers the export mechanism
-    - The exporting process asks the user for the location and the name of the exported file. The file is created in the defined directory using the given name as a JSON file. eg. `<my-fantastic-game>.json`
-    - The file stores every necessary game state information in JSON format.
-    - There is a menu button labeled `Import` for importing a previously saved game.
-- The system shows a file browser to select an exported file
-  - If the chosen file isn't in proper format, the application shows a dialog window (OK, Cancel) with the following message: `IMPORT ERROR! Unfortunately the given file is in wrong format. Please try another one!`
-    - If the user clicks on `OK` button then the window closes without any further action
-    - If the user click on `Cancel` all dialog and modal window closes
-  - In case the file is in the required format, the game loads the state, and navigates on the map to the point where the user left the game with its inventory
-
-5. The customer seeks for quality assurance and wants to see that your code is covered by unit tests. It is important that beyond positive test cases also cover negative scenarios.
-    - Every unit test method is well arranged and follows the `arrange`-`act`-`assert` structure
-    - Unit test classes and methods follow these naming conventions consistently:
-- classes: `<The name of the tested class>Test`
-- methods: `<the name of the tested method>_<expected input / tested state>_<expected behavior>`
-    - Every test class has at least one negative test case (and more if it's plausible)
-    - Code coverage of self-created business logic classes is above 90%
-
-## General requirements
-
-None
-
-## Hints
-
-- Break the backlog items into smaller tasks so that you can work in parallel
-- The given DB schema is only an example. Probably you need to alter is according to the requirements. For instance it doesn't contain any info about inventory or discovered maps by the player
-- Write as many unit tests as possible to cover your business logic
-- If a method takes a reference type parameter there should be test for getting `null` as an argument. It is called negative test cases.
-- You can read easily an environment variable's value: `System.getenv("VAR_NAME");`
-- You can import the sample data file into `psql` with the `\i` command or run it via the Database tool in IntelliJ.
-- In IntelliJ language injections let you work with pieces of code in other languages embedded in your code. When you inject a language (such as PostgreSQL) into a string literal, you get comprehensive code assistance for editing that literal.
-- Do you remember how to set environment variables for your run configuration? [here](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html)
-- For serialization you need to add necessary dependency to your `pom.xml` and reload the maven project
-
-
-## Starting your project
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
 
 
-## Background materials
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![LinkedIn - Marius][linkedin-shield]][linkedin-marius-url]
+[![Github - Marius][github-marius-shield]][github-marius-url]
+[![Github - Razvan][github-razvan-shield]][github-razvan-url]
 
-- <i class="far fa-exclamation"></i> [Software testing](/pages/general/software-testing)
-- <i class="far fa-book-open"></i> [Positive or negative](https://stackoverflow.com/questions/8162423)
-- <i class="far fa-exclamation"></i> [How to design classes](/pages/java/how-to-design-classes)
-- <i class="far fa-exclamation"></i> [Introduction to jdbc](/pages/java/introduction-to-jdbc)
-- <i class="far fa-exclamation"></i> [jdbc basics](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
-- <i class="far fa-exclamation"></i> [DAO pattern in Java](https://www.baeldung.com/java-dao-pattern)
-- <i class="far fa-exclamation"></i> [Serialization in Java](/pages/java/serialization-in-java)
-- <i class="far fa-exclamation"></i> [Compare two popular serialization framwork](https://www.baeldung.com/jackson-vs-gson)
-- Reference: the tiles used in the game are from [1-Bit Pack by Kenney](https://kenney.nl/assets/bit-pack), shared on [CC0 1.0 Universal license](https://creativecommons.org/publicdomain/zero/1.0/)
+
+
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/rgrigore/Poke-Battlez-Frontend/tree/project_documentation.git">
+    <img src="doc_images/pokelogo.png" alt="Logo" width="300">
+  </a>
+
+<h3 align="center">Poke Battlez</h3>
+
+  <p align="center">
+    An awesome web multiplayer game for Pokemon fans!
+    <br />
+    <a href="https://github.com/rgrigore/Poke-Battlez-Frontend.git"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/rgrigore/Poke-Battlez-Frontend.git">View Demo</a>
+    ·
+    <a href="https://github.com/rgrigore/Poke-Battlez-Frontend/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/rgrigore/Poke-Battlez-Frontend/issues">Request Feature</a>
+  </p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+This is an exciting multiplayer strategy game for all Pokemon fans out there, and a way for them to directly interact online.
+
+Here's why:
+* Poke Battlez is the place where you can meet online and chat as a group.
+* You can send PMs to any other user, for those private thoughts or invitations for direct challenges.
+* You can use all your Pokemon skills and knowledge in configuring and modifying your own team of pokemons, up to 6 of them.
+* You can challenge any other user for a 1 to 1 battle.
+* You can execute a battle where you can test your customized team together with your best Pokemon battle strategies.
+
+Of course, all Pokemon are available to you, together with a comprehensive list of characteristics you can customize, thanks to the Pokemon API used, more details in acknowledgements
+
+### Built With
+
+This section should list any major frameworks that you built your project using.
+
+#### Backend
+* [Spring Boot (WebSocket/JPA)](https://spring.io/projects/spring-boot)
+* [Lombok](https://projectlombok.org/)
+* [H2 DataBase](https://www.h2database.com/html/main.html)
+
+
+#### Frontend
+* [React](https://reactjs.org/)
+* [React-Bootstrap](https://react-bootstrap.github.io/)
+* [npm](https://www.npmjs.com/)
+
+#### Version control
+* [Github](https://www.gtihub.com/)
+
+#### Project Management
+* [Jira Software](https://www.atlassian.com/software/jira?&aceid=&adposition=&adgroup=89541897982&campaign=9124878150&creative=415542514747&device=c&keyword=jira&matchtype=e&network=g&placement=&ds_kids=p51242161283&ds_e=GOOGLE&ds_eid=700000001558501&ds_e1=GOOGLE&gclid=Cj0KCQiAnKeCBhDPARIsAFDTLTIUjm6m9LQssN_d15V_dYNqPiWaS_df09mdcnHPj-QkqTKrZfAjB6kaAhdEEALw_wcB&gclsrc=aw.ds)
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+This application can be tested by installing all prerequisites, clone both the back end and the client app, running them and enjoy!
+
+### Prerequisites
+
+All prerequisites must be installed, accordingly to the technologies used in this project, for example:
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+* Backend
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/rgrigore/Poke-Battlez-Backend.git
+   ```
+2. Run the server
+
+* Frontend
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/rgrigore/Poke-Battlez-Frontend.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run the app
+   ```
+    npm start
+   ```
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Further we will shortly name, describe and visualize some main features of the app.
+
+### Lobby
+* In order to connect to the main server, there is necessary to register or login.
+
+[![register-png][register-png]]()
+[![login-png][login-png]]()
+[![login-gif][login-gif]]()
+
+* Here all users join a common "room", where they can check who is online, and they can chat, either on  the main chat, or send PM to specific users.
+
+[![chat-png][chat-png]]()
+
+* Click on any user and see the private actions you can take towards that specific user.
+
+[![PM-gif][PM-gif]]()
+
+* Using the button in the header, you open the TEAM configuration modal, where you can configure all your Pokemon slots, with actual characters and with detailed criteria as seen bellow:
+
+[![team-gif][team-gif]]()
+
+* Select the user you want to engage into battle and by pressing the challenge button, you will be transferred on a private room with him/her, where you can chat or execute the battle.
+
+[![challenge-gif][challenge-gif]]()
+[![battle-gif][battle-gif]]()
+
+### Battle
+* The battle is turn based, with the player being able to select the Pokemon, and the move which to be executed against the adversary Pokemon. Once both players "locked" their own moves, they will get a log response with the results of the turn, and impacting their Pokemon health accordingly. You can also swith between your Pokemon team at any time.
+
+<!-- ROADMAP -->
+## Roadmap
+
+The project development took place through 4 Agile iterations, each iteration taking 4 days, and presenting the results in the 5th. A short complete roadmap bellow:
+
+[![agile][agile]]()
+
+* Sprint 1: Implementing main Lobby (Group chat, Online users, Login System)
+* Spring 2: Implementing Team configuration / PM messaging / Send and Receive Challenge
+* Sprint 3: Implementing Accept Challenge / Battle page / Battle Logic
+* Sprint 4: Refactoring Battle service / Unit Testing / Secure User Login system
+
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+<!-- CONTACT -->
+## Contact
+
+Marius Ceobanu - [@My Github](https://github.com/marius-ceobanu) [@My LinkedIn](https://www.linkedin.com/in/marius-ciprian-ceobanu-3431157b) - ceobanu.marius@gmail.com
+
+Razvan Grigore - [@My Github](https://github.com/rgrigore) - razvang95@gmail.com
+
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* [Software testing](/pages/general/software-testing)
+* [Positive or negative](https://stackoverflow.com/questions/8162423)
+* [How to design classes](/pages/java/how-to-design-classes)
+* [Introduction to jdbc](/pages/java/introduction-to-jdbc)
+* [jdbc basics](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
+* [DAO pattern in Java](https://www.baeldung.com/java-dao-pattern)
+* [Serialization in Java](/pages/java/serialization-in-java)
+* [Compare two popular serialization framwork](https://www.baeldung.com/jackson-vs-gson)
+* [1-Bit Pack by Kenney - Graphic Tiles](https://kenney.nl/assets/bit-pack)
+* [CC0 1.0 Universal license](https://creativecommons.org/publicdomain/zero/1.0/)
+* [Codecool Romania :thumbsup:](https://codecool.com/ro/)
+* [Img Shields](https://shields.io)
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/badge/Contributers-2-brightgreen
+[contributors-url]: https://github.com/rgrigore/Poke-Battlez-Frontend/graphs/contributors
+[forks-shield]: https://img.shields.io/badge/Forks-0-blue
+[forks-url]: https://github.com/rgrigore/Poke-Battlez-Frontend/network/members
+[stars-shield]: https://img.shields.io/badge/Stars-2-blue
+[stars-url]: https://github.com/rgrigore/Poke-Battlez-Frontend/stargazers
+[issues-shield]: https://img.shields.io/github/issues/rgrigore/Poke-Battlez-Frontend
+[issues-url]: https://github.com/rgrigore/Poke-Battlez-Frontend/issues
+[linkedin-shield]: https://img.shields.io/twitter/url?label=Linkedin%20-%20Marius&logo=LINKEDIN&style=social&url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fmarius-ciprian-ceobanu-3431157b
+[linkedin-marius-url]: https://www.linkedin.com/in/marius-ciprian-ceobanu-3431157b
+[github-marius-shield]: https://img.shields.io/twitter/url?label=GitHub%20-%20Marius&logo=Github&style=social&url=https%3A%2F%2Fgithub.com%2Fmarius-ceobanu
+[github-marius-url]: https://github.com/marius-ceobanu
+[github-razvan-shield]: https://img.shields.io/twitter/url?label=GitHub%20-%20Razvan&logo=Github&style=social&url=https%3A%2F%2Fgithub.com%2Frgrigore
+[github-razvan-url]: https://github.com/rgrigore
+[chat-png]: doc_images/chat.png
+[register-png]: doc_images/register.png
+[login-png]: doc_images/login.png
+[login-gif]: doc_images/login.gif
+[PM-gif]: doc_images/PM.gif
+[team-gif]: doc_images/team.gif
+[challenge-gif]: doc_images/challenge.gif
+[battle-gif]: doc_images/battle.gif
+[agile]: doc_images/agile-logo.png
