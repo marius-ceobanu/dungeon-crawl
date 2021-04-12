@@ -241,7 +241,7 @@ Razvan Grigore - [@My Github](https://github.com/rgrigore) - razvang95@gmail.com
 [github-razvan-shield]: https://img.shields.io/twitter/url?label=GitHub%20-%20Razvan&logo=Github&style=social&url=https%3A%2F%2Fgithub.com%2Frgrigore
 [github-razvan-url]: https://github.com/rgrigore
 <!-- IMAGES -->
-[register-png]: doc_images/register.png
+[register-png]: src/main/resources/register.png
 [start-gif]: src/main/resources/first-map.gif
 [first-map-gif]: src/main/resources/first-map.gif
 [second-map-gif]: src/main/resources/second-map.gif
