@@ -35,16 +35,16 @@
 <h3 align="center">Dungeon Crawl</h3>
 
   <p align="center">
-    An awesome web multiplayer game for Pokemon fans!
+    An awesome PC roguelike game!
     <br />
-    <a href="https://github.com/rgrigore/Poke-Battlez-Frontend.git"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/marius-ceobanu/dungeon-crawl.git"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/rgrigore/Poke-Battlez-Frontend.git">View Demo</a>
+    <a href="https://github.com/marius-ceobanu/dungeon-crawl">View Demo</a>
     ·
-    <a href="https://github.com/rgrigore/Poke-Battlez-Frontend/issues">Report Bug</a>
+    <a href="https://github.com/marius-ceobanu/dungeon-crawl/issues">Report Bug</a>
     ·
-    <a href="https://github.com/rgrigore/Poke-Battlez-Frontend/issues">Request Feature</a>
+    <a href="https://github.com/marius-ceobanu/dungeon-crawl/issues">Request Feature</a>
   </p>
 
 
@@ -79,52 +79,46 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is an exciting multiplayer strategy game for all Pokemon fans out there, and a way for them to directly interact online.
+This is an exciting roguelike strategy game for all the fans out there, like the classic version that started in the 70’s and on.
 
 Here's why:
-* Poke Battlez is the place where you can meet online and chat as a group.
-* You can send PMs to any other user, for those private thoughts or invitations for direct challenges.
-* You can use all your Pokemon skills and knowledge in configuring and modifying your own team of pokemons, up to 6 of them.
-* You can challenge any other user for a 1 to 1 battle.
-* You can execute a battle where you can test your customized team together with your best Pokemon battle strategies.
-
-Of course, all Pokemon are available to you, together with a comprehensive list of characteristics you can customize, thanks to the Pokemon API used, more details in acknowledgements
+* You are the main hero of the story.
+* The main hero has to face enemies as Skeleton and Ghosts. 
+* The game is not turn based, so the enemies move individually and even chase the main hero.
+* Enemies can be defeated by direct battle.
+* There are 2 maps that the hero has to complete in order to reach the endpoint and win.
+* Keep in mind that there are items to collect in order to boost you up, but some are dangerous, and the hero should avoid in order not to create damage.
 
 ### Built With
 
-This section should list any major frameworks that you built your project using.
-
 #### Backend
-* [Spring Boot (WebSocket/JPA)](https://spring.io/projects/spring-boot)
-* [Lombok](https://projectlombok.org/)
-* [H2 DataBase](https://www.h2database.com/html/main.html)
+* [Java](https://www.java.com/)
+* [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
+* [Jackson JSON](https://www.journaldev.com/2324/jackson-json-java-parser-api-example-tutorial)
+* [PostgreSQL DataBase](https://www.postgresql.org/)
 
-
-#### Frontend
-* [React](https://reactjs.org/)
-* [React-Bootstrap](https://react-bootstrap.github.io/)
-* [npm](https://www.npmjs.com/)
+#### UI
+* [JavaFX](https://openjfx.io/)
 
 #### Version control
-* [Github](https://www.gtihub.com/)
+* [Github](https://www.github.com/)
+
+#### Dependency manager and build tool
+* [Maven](https://maven.apache.org/)
 
 #### Project Management
-* [Jira Software](https://www.atlassian.com/software/jira?&aceid=&adposition=&adgroup=89541897982&campaign=9124878150&creative=415542514747&device=c&keyword=jira&matchtype=e&network=g&placement=&ds_kids=p51242161283&ds_e=GOOGLE&ds_eid=700000001558501&ds_e1=GOOGLE&gclid=Cj0KCQiAnKeCBhDPARIsAFDTLTIUjm6m9LQssN_d15V_dYNqPiWaS_df09mdcnHPj-QkqTKrZfAjB6kaAhdEEALw_wcB&gclsrc=aw.ds)
+* [Trello](https://www.trello.com/)
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This application can be tested by installing all prerequisites, clone both the back end and the client app, running them and enjoy!
+This application can be tested by installing all prerequisites, clone the repo, build the project from pom.xml, run the app and enjoy!
 
 ### Prerequisites
 
-All prerequisites must be installed, accordingly to the technologies used in this project, for example:
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+All prerequisites must be installed, accordingly to the technologies used in this project:
 
 ### Installation
 
@@ -132,73 +126,67 @@ All prerequisites must be installed, accordingly to the technologies used in thi
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/rgrigore/Poke-Battlez-Backend.git
+   git clone https://github.com/marius-ceobanu/dungeon-crawl.git
    ```
-2. Run the server
+2. Build the pom.xml in order to download dependencies.
 
-* Frontend
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/rgrigore/Poke-Battlez-Frontend.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Run the app
-   ```
-    npm start
-   ```
-
-
+3. Run the app, and the game will pop up.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 Further we will shortly name, describe and visualize some main features of the app.
 
-### Lobby
-* In order to connect to the main server, there is necessary to register or login.
+### Start window
+* On the opening window, first introduce a player name (existing or new).
 
 [![register-png][register-png]]()
-[![login-png][login-png]]()
-[![login-gif][login-gif]]()
 
-* Here all users join a common "room", where they can check who is online, and they can chat, either on  the main chat, or send PM to specific users.
+* Once the player name introduced, the game starts on the first map. In the right bar, you can find your game details as player name, restart button, current health, damage value and inventory of items.
 
-[![chat-png][chat-png]]()
+[![start-gif][start-gif]]()
 
-* Click on any user and see the private actions you can take towards that specific user.
+### First map
+* First map is smaller and static. The main target is to collect all the health boosters and keys in order to advance to next sections of the map.
+* Independent characters are moving on the map in order to chase you and attack you, make sure you either fight them or run from them.
 
-[![PM-gif][PM-gif]]()
+[![first-map-gif][first-map-gif]]()
 
-* Using the button in the header, you open the TEAM configuration modal, where you can configure all your Pokemon slots, with actual characters and with detailed criteria as seen bellow:
+### Second map
+* Second map is dynamic and significantly larger, having to travel more in order to collect all the keys for the final door.
 
-[![team-gif][team-gif]]()
+[![second-map-gif][second-map-gif]]()
 
-* Select the user you want to engage into battle and by pressing the challenge button, you will be transferred on a private room with him/her, where you can chat or execute the battle.
+* If the obstacles manage to drain your health, that's game over for the hero.
 
-[![challenge-gif][challenge-gif]]()
-[![battle-gif][battle-gif]]()
+[![dead-png][dead-png]]()
 
-### Battle
-* The battle is turn based, with the player being able to select the Pokemon, and the move which to be executed against the adversary Pokemon. Once both players "locked" their own moves, they will get a log response with the results of the turn, and impacting their Pokemon health accordingly. You can also swith between your Pokemon team at any time.
+### Save / Load progress
+* By pressing F1 we can export progress in local json file.
+  
+[![export-png][export-png]]()
+  
+* By pressing F2 we can import progress from local json file.
+
+[![import-png][import-png]]()
+
+* By pressing F5 we can save progress in our database.
+
+[![save-png][save-png]]()
+
+* By pressing F9 we can load game progress from our database.
+
+[![load-png][load-png]]()
 
 <!-- ROADMAP -->
 ## Roadmap
 
-The project development took place through 4 Agile iterations, each iteration taking 4 days, and presenting the results in the 5th. A short complete roadmap bellow:
+The project development took place through 2 Agile iterations, each iteration taking 4 days, and presenting the results in the 5th. A short complete roadmap bellow:
 
 [![agile][agile]]()
 
-* Sprint 1: Implementing main Lobby (Group chat, Online users, Login System)
-* Spring 2: Implementing Team configuration / PM messaging / Send and Receive Challenge
-* Sprint 3: Implementing Accept Challenge / Battle page / Battle Logic
-* Sprint 4: Refactoring Battle service / Unit Testing / Secure User Login system
-
-
-
+* Sprint 1: Implementing main game logic and design the 2 maps.
+* Spring 2: Implementing the save & load option (saving system / DB storage / JSON save storage).
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -252,12 +240,14 @@ Razvan Grigore - [@My Github](https://github.com/rgrigore) - razvang95@gmail.com
 [github-marius-url]: https://github.com/marius-ceobanu
 [github-razvan-shield]: https://img.shields.io/twitter/url?label=GitHub%20-%20Razvan&logo=Github&style=social&url=https%3A%2F%2Fgithub.com%2Frgrigore
 [github-razvan-url]: https://github.com/rgrigore
-[chat-png]: doc_images/chat.png
+<!-- IMAGES -->
 [register-png]: doc_images/register.png
-[login-png]: doc_images/login.png
-[login-gif]: doc_images/login.gif
-[PM-gif]: doc_images/PM.gif
-[team-gif]: doc_images/team.gif
-[challenge-gif]: doc_images/challenge.gif
-[battle-gif]: doc_images/battle.gif
-[agile]: doc_images/agile-logo.png
+[start-gif]: src/main/resources/first-map.gif
+[first-map-gif]: src/main/resources/first-map.gif
+[second-map-gif]: src/main/resources/second-map.gif
+[export-png]: src/main/resources/export.png
+[import-png]: src/main/resources/import.png
+[save-png]: src/main/resources/save.png
+[load-png]: src/main/resources/load.png
+[dead-png]: src/main/resources/game_over_screen.png
+[agile]: src/main/resources/agile-logo.png
